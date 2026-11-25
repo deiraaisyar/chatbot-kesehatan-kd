@@ -3,6 +3,7 @@
 This document describes the deployed inference system: the dashboard, the FastAPI service on the Raspberry Pi, the three tabular risk models, the rule engine, the Indonesian chatbot model, and the network path between them.
 
 It covers the **deployment and inference architecture**, not the offline training notebooks.
+For power-on, restart, and troubleshooting procedures, see [`STARTUP.md`](STARTUP.md).
 
 ---
 

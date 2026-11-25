@@ -204,7 +204,25 @@ Run one assessment and one chat. Confirm:
 - the fallback notice appears if the model fails the guard;
 - with `CHAT_MULTI_TURN=0`, the UI offers one question per assessment.
 
-## 8. Useful checks
+## 8. Startup after reboot
+
+After the first deployment, the normal workflow is documented in
+[`../STARTUP.md`](../STARTUP.md). In short:
+
+```bash
+systemctl is-active health-api llama
+curl http://127.0.0.1:8080/health
+curl http://127.0.0.1:8000/v1/health
+```
+
+The services are enabled and should start automatically. The dashboard is
+served at `http://<pi-ip>:8000/`. The bearer token remains in
+`/etc/health/api.env`.
+
+For service restarts, code/model updates, network changes, and troubleshooting,
+use `STARTUP.md`.
+
+## 9. Useful checks
 
 ```bash
 curl http://127.0.0.1:8080/health
