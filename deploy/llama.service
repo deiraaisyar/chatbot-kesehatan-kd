@@ -7,6 +7,7 @@ Wants=network-online.target
 User=health
 Group=health
 WorkingDirectory=/opt/health
+Environment=LD_LIBRARY_PATH=/opt/health/bin
 ExecStart=/opt/health/bin/llama-server \
   -m /opt/health/models/chat/0.5B-q4_k_m.gguf \
   -c 4096 \

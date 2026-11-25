@@ -63,7 +63,10 @@ sudo -u health git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
 sudo -u health cmake -B build -DGGML_NATIVE=ON -DLLAMA_CURL=OFF
 sudo -u health cmake --build build --config Release -j4
-sudo cp build/bin/llama-server /opt/health/bin/
+sudo install -d -o health -g health /opt/health/bin
+sudo install -m 755 build/bin/llama-server /opt/health/bin/
+sudo cp -a build/bin/*.so* /opt/health/bin/
+sudo chown -h health:health /opt/health/bin/*.so*
 ```
 
 ## 4. Environment
