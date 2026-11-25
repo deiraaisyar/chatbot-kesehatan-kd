@@ -1,0 +1,6 @@
+.venv/
+research_notes/
+reports/
+data/nhanes_*
+__pycache__/
+.ipynb_checkpoints/

@@ -1,0 +1,21 @@
+{
+ "features": [
+  "age",
+  "male",
+  "bmi",
+  "sbp",
+  "dbp",
+  "smoker",
+  "waist",
+  "hdl",
+  "fam_dm",
+  "fam_mi",
+  "vig_rec",
+  "mod_rec"
+ ],
+ "targets": [
+  "htn",
+  "dm_comp",
+  "hichol"
+ ]
+}

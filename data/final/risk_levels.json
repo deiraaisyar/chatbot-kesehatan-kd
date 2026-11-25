@@ -1,0 +1,17 @@
+{
+ "hipertensi": {
+  "prevalence": 0.37,
+  "low_below": 0.2,
+  "high_from": 0.55
+ },
+ "diabetes": {
+  "prevalence": 0.195,
+  "low_below": 0.1,
+  "high_from": 0.3
+ },
+ "kolesterol_tinggi": {
+  "prevalence": 0.35,
+  "low_below": 0.2,
+  "high_from": 0.55
+ }
+}

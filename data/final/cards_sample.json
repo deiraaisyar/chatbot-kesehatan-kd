@@ -1,0 +1,459 @@
+[
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 35,
+   "jenis_kelamin": "laki-laki",
+   "bmi": 25.2,
+   "td_sistolik": 120,
+   "td_diastolik": 68,
+   "pernah_merokok": "tidak",
+   "lingkar_pinggang_cm": 88.0,
+   "hdl_mgdl": 46.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "ya",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "normal",
+   "bmi": "obesitas I",
+   "lingkar_pinggang": "normal",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.062,
+    "persen_perkiraan": "5%",
+    "tingkat": "rendah"
+   },
+   "diabetes": {
+    "probabilitas": 0.009,
+    "persen_perkiraan": "<5%",
+    "tingkat": "rendah"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.143,
+    "persen_perkiraan": "15%",
+    "tingkat": "rendah"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 118600,
+  "jenis_contoh": "semua rendah"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 19,
+   "jenis_kelamin": "perempuan",
+   "bmi": 24.6,
+   "td_sistolik": 98,
+   "td_diastolik": 66,
+   "pernah_merokok": "tidak",
+   "lingkar_pinggang_cm": 76.9,
+   "hdl_mgdl": 60.0,
+   "riwayat_diabetes_keluarga": "tidak diketahui",
+   "riwayat_serangan_jantung_keluarga": "tidak diketahui",
+   "olahraga_berat_rekreasi": "ya",
+   "olahraga_sedang_rekreasi": "tidak"
+  },
+  "kategori": {
+   "tekanan_darah": "normal",
+   "bmi": "berat badan lebih",
+   "lingkar_pinggang": "normal",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.006,
+    "persen_perkiraan": "<5%",
+    "tingkat": "rendah"
+   },
+   "diabetes": {
+    "probabilitas": 0.002,
+    "persen_perkiraan": "<5%",
+    "tingkat": "rendah"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.006,
+    "persen_perkiraan": "<5%",
+    "tingkat": "rendah"
+   }
+  },
+  "data_tidak_lengkap": [
+   "fam_dm",
+   "fam_mi"
+  ],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 115191,
+  "jenis_contoh": "semua rendah"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 56,
+   "jenis_kelamin": "perempuan",
+   "bmi": 24.8,
+   "td_sistolik": 123,
+   "td_diastolik": 71,
+   "pernah_merokok": "ya",
+   "lingkar_pinggang_cm": 85.2,
+   "hdl_mgdl": 60.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "tidak",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "meningkat (elevated)",
+   "bmi": "berat badan lebih",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.245,
+    "persen_perkiraan": "25%",
+    "tingkat": "sedang"
+   },
+   "diabetes": {
+    "probabilitas": 0.065,
+    "persen_perkiraan": "5%",
+    "tingkat": "rendah"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.414,
+    "persen_perkiraan": "40%",
+    "tingkat": "sedang"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 117514,
+  "jenis_contoh": "campuran"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 42,
+   "jenis_kelamin": "laki-laki",
+   "bmi": 28.6,
+   "td_sistolik": 135,
+   "td_diastolik": 89,
+   "pernah_merokok": "ya",
+   "lingkar_pinggang_cm": 95.9,
+   "hdl_mgdl": 63.0,
+   "riwayat_diabetes_keluarga": "ya",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "ya",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "hipertensi stage 1",
+   "bmi": "obesitas I",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.294,
+    "persen_perkiraan": "30%",
+    "tingkat": "sedang"
+   },
+   "diabetes": {
+    "probabilitas": 0.074,
+    "persen_perkiraan": "5%",
+    "tingkat": "rendah"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.257,
+    "persen_perkiraan": "25%",
+    "tingkat": "sedang"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 113839,
+  "jenis_contoh": "campuran"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 54,
+   "jenis_kelamin": "laki-laki",
+   "bmi": 55.0,
+   "td_sistolik": 137,
+   "td_diastolik": 93,
+   "pernah_merokok": "tidak",
+   "lingkar_pinggang_cm": 154.1,
+   "hdl_mgdl": 39.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "tidak",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "hipertensi stage 2",
+   "bmi": "obesitas II",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "rendah"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.509,
+    "persen_perkiraan": "50%",
+    "tingkat": "sedang"
+   },
+   "diabetes": {
+    "probabilitas": 0.526,
+    "persen_perkiraan": "55%",
+    "tingkat": "tinggi"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.41,
+    "persen_perkiraan": "40%",
+    "tingkat": "sedang"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 110165,
+  "jenis_contoh": "satu tinggi"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 80,
+   "jenis_kelamin": "laki-laki",
+   "bmi": 34.7,
+   "td_sistolik": 140,
+   "td_diastolik": 86,
+   "pernah_merokok": "ya",
+   "lingkar_pinggang_cm": 119.8,
+   "hdl_mgdl": 53.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "tidak",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "hipertensi stage 1",
+   "bmi": "obesitas II",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.417,
+    "persen_perkiraan": "40%",
+    "tingkat": "sedang"
+   },
+   "diabetes": {
+    "probabilitas": 0.319,
+    "persen_perkiraan": "30%",
+    "tingkat": "tinggi"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.541,
+    "persen_perkiraan": "55%",
+    "tingkat": "sedang"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 124528,
+  "jenis_contoh": "satu tinggi"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 75,
+   "jenis_kelamin": "laki-laki",
+   "bmi": 24.6,
+   "td_sistolik": 150,
+   "td_diastolik": 77,
+   "pernah_merokok": "tidak",
+   "lingkar_pinggang_cm": 98.9,
+   "hdl_mgdl": 39.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "tidak",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "hipertensi stage 2",
+   "bmi": "berat badan lebih",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "rendah"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.5,
+    "persen_perkiraan": "50%",
+    "tingkat": "sedang"
+   },
+   "diabetes": {
+    "probabilitas": 0.341,
+    "persen_perkiraan": "35%",
+    "tingkat": "tinggi"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.61,
+    "persen_perkiraan": "60%",
+    "tingkat": "tinggi"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 119367,
+  "jenis_contoh": "dua tinggi"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 72,
+   "jenis_kelamin": "perempuan",
+   "bmi": 28.2,
+   "td_sistolik": 135,
+   "td_diastolik": 67,
+   "pernah_merokok": "tidak",
+   "lingkar_pinggang_cm": 93.6,
+   "hdl_mgdl": 69.0,
+   "riwayat_diabetes_keluarga": "ya",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "tidak",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "hipertensi stage 1",
+   "bmi": "obesitas I",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.647,
+    "persen_perkiraan": "65%",
+    "tingkat": "tinggi"
+   },
+   "diabetes": {
+    "probabilitas": 0.401,
+    "persen_perkiraan": "40%",
+    "tingkat": "tinggi"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.726,
+    "persen_perkiraan": "75%",
+    "tingkat": "tinggi"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 123245,
+  "jenis_contoh": "semua tinggi"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 58,
+   "jenis_kelamin": "laki-laki",
+   "bmi": 25.1,
+   "td_sistolik": 185,
+   "td_diastolik": 121,
+   "pernah_merokok": "ya",
+   "lingkar_pinggang_cm": 92.8,
+   "hdl_mgdl": 45.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "tidak",
+   "olahraga_sedang_rekreasi": "tidak"
+  },
+  "kategori": {
+   "tekanan_darah": "hipertensi stage 2",
+   "bmi": "obesitas I",
+   "lingkar_pinggang": "di atas batas (obesitas sentral)",
+   "hdl": "cukup"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.949,
+    "persen_perkiraan": "95%",
+    "tingkat": "tinggi"
+   },
+   "diabetes": {
+    "probabilitas": 0.03,
+    "persen_perkiraan": "5%",
+    "tingkat": "rendah"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.246,
+    "persen_perkiraan": "25%",
+    "tingkat": "sedang"
+   }
+  },
+  "data_tidak_lengkap": [],
+  "peringatan": [
+   "tekanan darah sangat tinggi: anjurkan segera ke fasilitas kesehatan"
+  ],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 123128,
+  "jenis_contoh": "TD sangat tinggi"
+ },
+ {
+  "versi": 1,
+  "pasien": {
+   "umur": 24,
+   "jenis_kelamin": "perempuan",
+   "bmi": 21.0,
+   "td_sistolik": 112,
+   "td_diastolik": 65,
+   "pernah_merokok": "tidak",
+   "lingkar_pinggang_cm": null,
+   "hdl_mgdl": 43.0,
+   "riwayat_diabetes_keluarga": "tidak",
+   "riwayat_serangan_jantung_keluarga": "tidak",
+   "olahraga_berat_rekreasi": "ya",
+   "olahraga_sedang_rekreasi": "ya"
+  },
+  "kategori": {
+   "tekanan_darah": "normal",
+   "bmi": "normal",
+   "lingkar_pinggang": "tidak diketahui",
+   "hdl": "rendah"
+  },
+  "risiko": {
+   "hipertensi": {
+    "probabilitas": 0.022,
+    "persen_perkiraan": "<5%",
+    "tingkat": "rendah"
+   },
+   "diabetes": {
+    "probabilitas": 0.009,
+    "persen_perkiraan": "<5%",
+    "tingkat": "rendah"
+   },
+   "kolesterol_tinggi": {
+    "probabilitas": 0.026,
+    "persen_perkiraan": "5%",
+    "tingkat": "rendah"
+   }
+  },
+  "data_tidak_lengkap": [
+   "waist"
+  ],
+  "peringatan": [],
+  "disclaimer": "Hasil ini adalah perkiraan risiko statistik dari data survei dewasa Amerika (NHANES), bukan diagnosis. Konsultasikan dengan dokter atau tenaga kesehatan untuk pemeriksaan dan keputusan medis.",
+  "id_pasien": 119334,
+  "jenis_contoh": "data kosong"
+ }
+]

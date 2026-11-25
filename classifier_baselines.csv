@@ -1,0 +1,4 @@
+target,prevalence,majority_acc,auc_chance,prauc_chance
+hipertensi,0.381,0.619,0.5,0.381
+diabetes,0.199,0.801,0.5,0.199
+kolesterol_tinggi,0.35,0.65,0.5,0.35
