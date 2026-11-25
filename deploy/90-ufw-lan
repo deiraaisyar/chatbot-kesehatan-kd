@@ -1,0 +1,64 @@
+#!/bin/sh
+# NetworkManager dispatcher hook: allow SSH and the dashboard API from the
+# subnet the Pi is currently connected to. This prevents a lockout after
+# moving the Pi to a new LAN with a different subnet.
+#
+# Install at /etc/NetworkManager/dispatcher.d/90-ufw-lan (root:root, 0755).
+
+set -eu
+
+IFACE="${1:-}"
+ACTION="${2:-}"
+UFW=/usr/sbin/ufw
+IP=/usr/sbin/ip
+PYTHON=/usr/bin/python3
+LOGGER=/usr/bin/logger
+
+case "$IFACE" in
+    ""|lo|docker*|veth*|br-*|virbr*)
+        exit 0
+        ;;
+esac
+
+case "$ACTION" in
+    up|dhcp4-change|connectivity-change)
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+# Do nothing if the firewall is not active.
+"$UFW" status 2>/dev/null | grep -q '^Status: active' || exit 0
+
+CIDR=$("$IP" -4 -o addr show dev "$IFACE" scope global 2>/dev/null | awk 'NR==1 {print $4}')
+[ -n "$CIDR" ] || exit 0
+
+NET=$("$PYTHON" - "$CIDR" <<'PY'
+import ipaddress
+import sys
+
+try:
+    print(ipaddress.ip_interface(sys.argv[1]).network)
+except ValueError:
+    raise SystemExit(0)
+PY
+)
+[ -n "$NET" ] || exit 0
+
+# Never auto-open link-local addresses.
+case "$NET" in
+    169.254.*)
+        exit 0
+        ;;
+esac
+
+# If this subnet is already present, do not add duplicate rules.
+if "$UFW" status 2>/dev/null | grep -Fq "$NET"; then
+    "$LOGGER" -t ufw-lan "subnet $NET already allowed on $IFACE"
+    exit 0
+fi
+
+"$UFW" allow from "$NET" to any port 22 proto tcp comment 'auto: SSH from current LAN' >/dev/null
+"$UFW" allow from "$NET" to any port 8000 proto tcp comment 'auto: API from current LAN' >/dev/null
+"$LOGGER" -t ufw-lan "allowed SSH/8000 from $NET on $IFACE"

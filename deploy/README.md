@@ -134,6 +134,57 @@ sudo ufw status
 If the laptop and Pi can both reach the internet but cannot ping each other,
 the Wi-Fi has AP/client isolation. Use a travel router or direct Ethernet.
 
+### Preparing for a different Wi-Fi network
+
+Add a second NetworkManager profile **without activating it** while the Pi is
+still on the current network:
+
+```bash
+sudo nmcli connection add type wifi \
+  con-name "newhome" ifname wlan0 ssid "NEW_SSID"
+sudo nmcli connection modify "newhome" \
+  wifi-sec.key-mgmt wpa-psk wifi-sec.psk "NEW_PASSWORD"
+sudo nmcli connection modify "newhome" \
+  connection.autoconnect yes connection.autoconnect-priority 10
+```
+
+Keep the current `healthnet` profile as a fallback. For a hidden SSID add
+`802-11-wireless.hidden yes`; for WPA3-only use `wifi-sec.key-mgmt sae`.
+
+If the new network is not visible yet, that is fine: NetworkManager stores the
+profile and uses it when the SSID appears. If the new location uses a captive
+portal or WPA-Enterprise, use a travel router or phone hotspot instead.
+
+### Network-change firewall hook
+
+Moving the Pi to a different LAN changes its subnet. The normal UFW rules are
+subnet-specific, so SSH and port 8000 can become unreachable even though Wi-Fi
+connected. Install the dispatcher hook once:
+
+```bash
+sudo install -m 755 /opt/health/deploy/90-ufw-lan \
+  /etc/NetworkManager/dispatcher.d/90-ufw-lan
+sudo /etc/NetworkManager/dispatcher.d/90-ufw-lan wlan0 up
+```
+
+On every Wi-Fi/Ethernet connection, the hook adds UFW rules for the current
+subnet only:
+
+```text
+allow 22/tcp from <current-subnet>
+allow 8000/tcp from <current-subnet>
+```
+
+Old subnet rules are not removed automatically. After moving, review and clean
+them up:
+
+```bash
+sudo ufw status numbered
+```
+
+This hook does not bypass Wi-Fi AP/client isolation. If the laptop and Pi
+cannot ping each other on the new network, use a travel router or Ethernet.
+
 ## 7. Verify
 
 From the demo laptop:
