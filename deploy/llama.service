@@ -1,0 +1,23 @@
+[Unit]
+Description=llama.cpp chat server for Kartu Risiko Pi
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=health
+Group=health
+WorkingDirectory=/opt/health
+ExecStart=/opt/health/bin/llama-server \
+  -m /opt/health/models/chat/0.5B-q4_k_m.gguf \
+  -c 4096 \
+  -t 4 \
+  -np 1 \
+  --jinja \
+  --host 127.0.0.1 \
+  --port 8080
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

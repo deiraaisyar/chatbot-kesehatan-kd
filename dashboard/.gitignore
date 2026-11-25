@@ -1,0 +1,4 @@
+/node_modules/
+/.asset-work/
+/test-results/
+*.log

@@ -4,3 +4,9 @@ reports/
 data/nhanes_*
 __pycache__/
 .ipynb_checkpoints/
+.pytest_cache/
+.env
+models/chat/*.gguf
+dashboard/node_modules/
+dashboard/test-results/
+dashboard/.asset-work/

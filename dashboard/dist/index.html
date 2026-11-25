@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard offline untuk penilaian risiko dan tanya jawab dari Raspberry Pi.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' http: https:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Kartu Risiko Pi</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-start">
+      <a class="brand" href="#penilaian" data-view="penilaian">
+        <span class="icon" aria-hidden="true">monitor_heart</span><span>Kartu Risiko Pi</span>
+      </a>
+      <nav aria-label="Navigasi utama" class="nav">
+        <a href="#penilaian" data-view="penilaian" aria-current="page">Penilaian</a>
+        <a href="#hasil" data-view="hasil">Kartu Hasil</a>
+      </nav>
+    </div>
+    <div class="topbar-end">
+      <div id="connection-badge" class="connection-badge mono" data-tone="demo" role="status"><span class="dot"></span><span id="connection-label">Mode demo</span><span id="connection-version"></span></div>
+      <a class="button" href="#pengaturan" data-view="pengaturan"><span class="icon" aria-hidden="true">settings</span><span>Pengaturan</span></a>
+    </div>
+  </header>
+
+  <div id="global-banner" class="global-banner" hidden>
+    <span class="icon" aria-hidden="true">info</span>
+    <p id="global-message" role="status"></p>
+    <button class="button small" type="button" id="reconnect" hidden>Coba lagi</button>
+    <a class="button small" href="#pengaturan" id="banner-settings" hidden>Pengaturan</a>
+  </div>
+
+  <div id="workbench" class="workbench">
+    <main class="workspace" id="workspace">
+      <section id="penilaian" class="workspace-content stack" aria-labelledby="assessment-title">
+        <div class="page-heading">
+          <div>
+            <h1 id="assessment-title" tabindex="-1">Penilaian Risiko Kesehatan</h1>
+            <p>Masukkan 12 nilai klinis dan gaya hidup. Raspberry Pi menghitung perkiraan risiko hipertensi, diabetes, dan kolesterol tinggi secara lokal.</p>
+          </div>
+          <button class="button" type="button" data-new-assessment><span class="icon" aria-hidden="true">restart_alt</span>Data baru</button>
+        </div>
+
+        <div class="demo-tools" id="demo-tools">
+          <label for="demo-case">Data contoh</label>
+          <select id="demo-case"><option value="missing">Data opsional kosong</option><option value="low">Risiko rendah</option><option value="red">Peringatan tekanan darah</option></select>
+          <button class="button small" type="button" id="load-case">Isi contoh</button>
+        </div>
+
+        <form id="assessment-form" novalidate autocomplete="off">
+          <fieldset id="assessment-controls" class="stack" aria-label="Data penilaian">
+            <section class="section" aria-labelledby="identity-title">
+              <div class="section-heading"><h2 id="identity-title">Identitas</h2><span>Wajib diisi</span></div>
+              <div class="fields two" data-fields="age male"></div>
+            </section>
+            <section class="section" aria-labelledby="body-title">
+              <div class="section-heading"><h2 id="body-title">Antropometri</h2><span>BMI wajib · Lingkar pinggang opsional</span></div>
+              <div class="helper panel">
+                <div class="helper-title"><strong>Bantu hitung BMI dari tinggi &amp; berat</strong><span class="mono">Hanya di perangkat ini</span></div>
+                <div class="fields three helper-fields">
+                  <label>Tinggi badan (cm)<input id="height" type="text" inputmode="decimal" aria-describedby="bmi-helper-error"></label>
+                  <label>Berat badan (kg)<input id="weight" type="text" inputmode="decimal" aria-describedby="bmi-helper-error"></label>
+                  <button class="button small" type="button" id="apply-bmi">Isi nilai BMI</button>
+                </div>
+                <p class="field-error" id="bmi-helper-error" role="alert" hidden></p>
+              </div>
+              <div class="fields two" data-fields="bmi waist"></div>
+            </section>
+            <section class="section" aria-labelledby="pressure-title">
+              <div class="section-heading"><h2 id="pressure-title">Tekanan Darah &amp; Lab</h2><span>Wajib diisi</span></div>
+              <div class="fields three" data-fields="sbp dbp hdl"></div>
+            </section>
+            <section class="section" aria-labelledby="history-title">
+              <div class="section-heading"><h2 id="history-title">Gaya Hidup &amp; Riwayat</h2><span>Opsional · Pilih “Tidak tahu” bila ragu</span></div>
+              <div class="panel divided" data-fields="smoker fam_dm fam_mi vig_rec mod_rec"></div>
+            </section>
+            <div class="submit-row">
+              <p id="assessment-privacy" class="muted text-small">Data penilaian hanya digunakan selama sesi ini.</p>
+              <button class="button primary" type="submit" id="submit-assessment"><span id="submit-label">Hitung risiko</span><span class="icon" aria-hidden="true">arrow_forward</span></button>
+            </div>
+          </fieldset>
+          <div id="assessment-error" class="feedback error" role="alert" tabindex="-1" hidden></div>
+        </form>
+      </section>
+
+      <section id="hasil" class="workspace-content stack" aria-labelledby="result-title" hidden>
+        <div id="emergency" class="notice danger" role="alert" aria-live="assertive" hidden>
+          <span class="icon" aria-hidden="true">emergency</span><div><h2>Peringatan</h2><ul id="emergency-text" class="plain-list"></ul></div>
+        </div>
+        <div class="page-heading result-heading">
+          <div><div class="heading-line"><h1 id="result-title" tabindex="-1">Kartu Hasil Risiko</h1><span id="assessment-id" class="mono id-tag" hidden></span></div><p id="result-meta"></p></div>
+          <button class="button" type="button" data-new-assessment><span class="icon" aria-hidden="true">add</span>Data baru</button>
+        </div>
+        <div id="result-empty" class="panel empty-result">
+          <h2>Kartu hasil belum tersedia</h2><p id="result-empty-text" class="muted">Isi formulir penilaian untuk melihat perkiraan risiko.</p>
+          <a class="button primary" href="#penilaian">Buka formulir penilaian</a>
+        </div>
+        <div id="result-content" class="stack" hidden>
+          <section class="panel summary" aria-labelledby="summary-title"><h2 id="summary-title" class="small-heading">Ringkasan data pasien</h2><dl id="patient-summary"></dl></section>
+          <section class="result-section" aria-labelledby="risk-title"><h2 id="risk-title">Perkiraan Risiko Kondisi</h2><div id="risk-rows" class="panel divided"></div></section>
+          <section class="result-section" aria-labelledby="category-title"><h2 id="category-title">Kategori Pengukuran</h2><dl id="categories" class="category-grid"></dl></section>
+          <section id="other-warnings" class="notice warning" hidden><span class="icon" aria-hidden="true">warning</span><div><h2>Peringatan</h2><ul id="warning-list" class="plain-list"></ul></div></section>
+          <section class="result-section" aria-labelledby="missing-title"><h2 id="missing-title" class="small-heading strong">Data yang tidak diisi</h2><ul id="missing-list" class="plain-list muted text-small"></ul></section>
+          <div class="notice" aria-label="Informasi hasil"><span class="icon" aria-hidden="true">info</span><p id="result-disclaimer" class="text-small"></p></div>
+          <button class="button result-chat" id="focus-chat" type="button"><span class="icon" aria-hidden="true">chat</span>Tanya tentang hasil ini</button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="chat-rail" aria-labelledby="chat-title">
+      <div class="chat-header"><div><h2 id="chat-title" tabindex="-1"><span class="icon" aria-hidden="true">chat</span><span id="chat-title-label">Tanya tentang hasil</span></h2><span id="chat-status" class="mono muted">Menunggu kartu</span></div><button class="button small" id="new-session" type="button" hidden><span class="icon" aria-hidden="true">add_comment</span>Sesi baru</button></div>
+      <div id="chat-empty" class="panel chat-empty"><span class="icon" aria-hidden="true">assignment</span><h3 id="chat-empty-title">Kartu hasil belum tersedia</h3><p id="chat-empty-text" class="muted">Isi formulir lalu tekan Hitung risiko untuk mulai bertanya tentang kartu hasil.</p></div>
+      <div id="chat-transcript" class="transcript" role="log" aria-label="Percakapan" aria-live="polite" hidden></div>
+      <div class="chat-bottom">
+        <div class="notice" aria-label="Informasi tanya jawab"><span class="icon" aria-hidden="true">info</span><p class="text-small" id="chat-disclaimer"></p></div>
+        <div id="suggestion-area" hidden><p class="small-heading">Saran pertanyaan</p><div id="suggestions" class="suggestions"></div></div>
+        <div id="chat-feedback" class="feedback" role="status" hidden></div>
+        <form id="chat-form" autocomplete="off">
+          <label class="sr-only" for="chat-input">Pertanyaan tentang hasil</label>
+          <textarea id="chat-input" rows="2" maxlength="500" placeholder="Hitung risiko terlebih dahulu untuk bertanya…" disabled></textarea>
+          <div class="chat-actions"><span id="char-count" class="mono muted">0/500</span><div class="button-group">
+            <button class="button small" id="stop-chat" type="button" hidden>Hentikan</button><button class="button primary small" id="send-chat" type="submit" disabled>Kirim<span class="icon" aria-hidden="true">send</span></button>
+          </div></div>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <main id="pengaturan" class="settings-page" aria-labelledby="settings-title" hidden>
+    <div class="settings-content stack">
+      <div class="page-heading"><div><h1 id="settings-title" tabindex="-1">Pengaturan &amp; Koneksi Raspberry Pi</h1><p>Konfigurasikan alamat API, token, dan kesiapan model Raspberry Pi sebelum demo offline.</p></div></div>
+      <div class="settings-grid">
+        <div class="settings-column">
+          <form class="panel settings-panel" id="connection-form" novalidate autocomplete="off">
+            <h2>Endpoint API Lokal</h2>
+            <fieldset class="mode-picker"><legend>Mode aplikasi</legend><div class="segments"><label><input type="radio" name="mode" value="demo" checked><span>Mode demo</span></label><label><input type="radio" name="mode" value="pi"><span>Raspberry Pi</span></label></div></fieldset>
+            <div id="pi-fields" class="settings-fields" hidden>
+              <label for="api-url">Alamat dasar API (Base URL)</label>
+              <div class="with-icon"><span class="icon" aria-hidden="true">lan</span><input id="api-url" type="url" inputmode="url" spellcheck="false" placeholder="http://192.168.50.2:8000" aria-describedby="api-url-help"></div>
+              <p id="api-url-help" class="muted text-small">Gunakan alamat IP Pi yang bisa dijangkau dari laptop.</p>
+              <label for="token">Bearer token</label>
+              <div class="token-row"><input id="token" type="password" autocomplete="off" spellcheck="false" aria-describedby="token-help"><button class="button" id="toggle-token" type="button" aria-controls="token" aria-pressed="false">Tampilkan</button></div>
+              <p class="muted text-small" id="token-help">Token berlaku untuk tab ini dan hilang saat halaman dimuat ulang.</p>
+            </div>
+            <div class="settings-actions"><p class="text-small muted" id="connection-feedback" role="status">Data contoh siap digunakan.</p><button class="button primary" id="test-connection" type="submit"><span class="icon" aria-hidden="true">refresh</span><span id="test-label">Gunakan mode demo</span></button></div>
+          </form>
+          <section class="panel settings-panel network-guide"><h2>Daftar periksa jaringan offline</h2><ul><li>Pastikan Raspberry Pi 4 menyala dan API sedang berjalan.</li><li>Sambungkan laptop dan Pi ke jaringan lokal yang sama.</li><li>Periksa alamat IP Pi dan port API (biasanya <span class="mono">8000</span>).</li><li>Jika dashboard berjalan dari origin berbeda, aktifkan CORS untuk origin tersebut di FastAPI.</li></ul></section>
+        </div>
+        <div class="settings-column">
+          <section class="panel settings-panel"><h2>Status Model di Pi</h2><div id="model-status" class="panel divided"></div><dl class="version-grid"><div><dt>Versi Aplikasi</dt><dd class="mono" id="app-version"></dd></div><div><dt>Kontrak API</dt><dd class="mono" id="api-version">—</dd></div></dl></section>
+          <section class="panel settings-panel"><h2>Privasi Sesi Lokal</h2><p class="muted text-small">Bersihkan isian, kartu hasil, dan percakapan dari tab ini.</p><button class="button destructive" type="button" id="clear-local">Hapus data sesi lokal</button><p class="text-small" id="clear-feedback" role="status" hidden></p></section>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
