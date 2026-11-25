@@ -49,10 +49,10 @@ sudo chown health:health /opt/health/models/chat/0.5B-q4_k_m.gguf
 sha256sum /opt/health/models/chat/0.5B-q4_k_m.gguf
 ```
 
-Expected SHA-256:
+Expected Hugging Face LFS SHA-256 (not the HTTP ETag):
 
 ```text
-4117c4248a581dafcf020fd1c1b5fb84826e92236a6c12c37db2a665e0448490
+83df64b1ba663c26900df5a102ba511bd5e546bba2f5ee2d224c7bd74095c141
 ```
 
 Build llama.cpp on the Pi (or copy a matching arm64 binary):

@@ -135,10 +135,10 @@ The GGUF is not committed (about 380 MiB). Fetch it with:
 .\scripts\fetch_chat_model.ps1
 ```
 
-The script verifies the SHA-256:
+The script verifies the Hugging Face LFS SHA-256 (not the HTTP ETag):
 
 ```text
-4117c4248a581dafcf020fd1c1b5fb84826e92236a6c12c37db2a665e0448490
+83df64b1ba663c26900df5a102ba511bd5e546bba2f5ee2d224c7bd74095c141
 ```
 
 ---

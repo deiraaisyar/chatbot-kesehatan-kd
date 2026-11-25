@@ -9,7 +9,8 @@ if (-not $Destination) {
 }
 $Destination = [IO.Path]::GetFullPath($Destination)
 $url = "https://huggingface.co/naiiaiai/chatbot-kesehatan-qwen2.5-0.5b/resolve/main/gguf/0.5B-q4_k_m.gguf?download=true"
-$expected = "4117c4248a581dafcf020fd1c1b5fb84826e92236a6c12c37db2a665e0448490"
+# Hugging Face LFS SHA-256 (not the HTTP ETag from a HEAD request).
+$expected = "83df64b1ba663c26900df5a102ba511bd5e546bba2f5ee2d224c7bd74095c141"
 
 New-Item -ItemType Directory -Force -Path (Split-Path -Parent $Destination) | Out-Null
 
