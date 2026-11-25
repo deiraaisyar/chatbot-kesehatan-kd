@@ -10,6 +10,8 @@ Dashboard (form + card + chat) -> FastAPI on the Pi -> 3 CatBoost ONNX models
 
 The LLM never computes or invents numbers. It only reads the card.
 
+See [`architecture.md`](architecture.md) for the full deployment, network, and inference architecture.
+
 **Status:** classifier, rule engine, KD student, dashboard, and Pi API are implemented. The student is published at
 [`naiiaiai/chatbot-kesehatan-qwen2.5-0.5b`](https://huggingface.co/naiiaiai/chatbot-kesehatan-qwen2.5-0.5b) (Qwen2.5-0.5B, Q4_K_M GGUF).
 Raspberry Pi latency/thermal measurements and a clinician review are still pending.
@@ -152,6 +154,7 @@ The script verifies the Hugging Face LFS SHA-256 (not the HTTP ETag):
 | `deploy/` | systemd services, environment example, Pi deployment notes |
 | `scripts/` | Fetch/verify the GGUF, build the dashboard, run dev/tests |
 | `tests/` | Card parity, prompt/guard, store/API tests (unittest) |
+| `architecture.md` | End-to-end system, model, deployment, and network architecture |
 | `capstone_classifier.ipynb` | Cleaning, split, ablations, models, evaluation, calibration, ONNX export, rule engine, card export |
 | `capstone_kd.ipynb` | Knowledge distillation on Colab: a teacher LLM writes answers for cards + questions, an automatic validator filters them, SFT files are built |
 | `models/*.onnx` | The three classifiers |
