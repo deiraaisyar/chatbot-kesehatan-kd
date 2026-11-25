@@ -10,3 +10,6 @@ models/chat/*.gguf
 dashboard/node_modules/
 dashboard/test-results/
 dashboard/.asset-work/
+bin/
+llama.cpp/
+venv/
